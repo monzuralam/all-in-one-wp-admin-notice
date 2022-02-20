@@ -17,3 +17,14 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
+
+if (!function_exists('all_in_one_wp_admin_notice')) {
+    function all_in_one_wp_admin_notice(){
+    ?>
+        <div class="notice notice-success is-dismissible">
+            <p>This is custom notice.</p>
+        </div>
+    <?php
+    }
+    add_action('admin_notices', 'all_in_one_wp_admin_notice');
+}
