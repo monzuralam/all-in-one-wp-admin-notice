@@ -18,6 +18,15 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
+define('AI1WPAN_URL',plugin_dir_url(__FILE__));
+
+if(!function_exists('all_in_one_wp_admin_notice_assets')){
+    function all_in_one_wp_admin_notice_assets(){
+        wp_enqueue_script('ai1wp-admin-notice', AI1WPAN_URL . 'assets/js/main.js', array('jquery'), time(), true);
+    }
+    add_action('admin_enqueue_scripts','all_in_one_wp_admin_notice_assets');
+}
+
 if (!function_exists('all_in_one_wp_admin_notice')) {
     function all_in_one_wp_admin_notice(){
     ?>
