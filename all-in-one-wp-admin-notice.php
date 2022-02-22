@@ -27,10 +27,24 @@ if(!function_exists('all_in_one_wp_admin_notice_assets')){
     add_action('admin_enqueue_scripts','all_in_one_wp_admin_notice_assets');
 }
 
+if(!function_exists('all_in_one_wp_admin_notice_activate')){
+    function all_in_one_wp_admin_notice_activate(){
+        add_option('ai1wpan-notice','0','','yes');
+    }
+    register_activation_hook( __FILE__, 'all_in_one_wp_admin_notice_activate');
+}
+
+if(!function_exists('all_in_one_wp_admin_notice_deactivate')){
+    function all_in_one_wp_admin_notice_deactivate(){
+        delete_option('ai1wpan-notice');
+    }
+    register_deactivation_hook( __FILE__, 'all_in_one_wp_admin_notice_deactivate');
+}
+
 if (!function_exists('all_in_one_wp_admin_notice')) {
     function all_in_one_wp_admin_notice(){
     ?>
-        <div class="notice notice-success is-dismissible">
+        <div id="ai1wp-notice" class="notice notice-success is-dismissible">
             <p>This is custom notice.</p>
         </div>
     <?php
